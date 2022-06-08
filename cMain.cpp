@@ -76,7 +76,25 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	}
 	else
 	{
+		int mine_count = 0;
+		for (int i = -1; i < 2; i++)
+		{
+			for (int j = -1; j < 2; j++)
+			{
+				if (x + i >= 0 && x + i < nFieldWidth && y + j >= 0 && y + j < nFieldHeight)
+				{
+					if (nField[(y+j)*nFieldWidth + (x+i)] == -1)
+					{
+						mine_count++;
+					}
+				}
+			}
+		}
 
+		if (mine_count > 0)
+		{
+			btn[y * nFieldWidth + x]->SetLabel(std::to_string(mine_count));
+		}
 	}
 
 	evt.Skip();
