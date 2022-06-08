@@ -60,5 +60,24 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 
 	btn[y * nFieldWidth + x]->Enable(false);
 
+	if (nField[y*nFieldWidth + x] == -1)
+	{
+		wxMessageBox("BOOOOOOOOM !! - Game Over :(");
+		bFirstClick = true;
+		for (int x = 0; x < nFieldWidth; x++) 
+		{
+			for (int y = 0; y < nFieldHeight; y++)
+			{
+				nField[y * nFieldWidth + x] = 0;
+				btn[y * nFieldWidth + x]->SetLabel("");
+				btn[y * nFieldWidth + x]->Enable(true);
+			}
+		}
+	}
+	else
+	{
+
+	}
+
 	evt.Skip();
 }
