@@ -14,11 +14,14 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Minesweeper", wxPoint(30,30), wxSiz
 
 	nField = new int[nFieldWidth * nFieldHeight];
 
+	wxFont font(24, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
+
 	for (int x = 0; x < nFieldWidth; x++)
 	{
 		for (int y = 0; y < nFieldHeight; y++)
 		{
 			btn[y * nFieldWidth + x] = new wxButton(this, 10000 + (y * nFieldWidth + x));
+			btn[y * nFieldWidth + x]->SetFont(font);
 			grid->Add(btn[y * nFieldWidth + x], 1, wxEXPAND | wxALL);
 
 			btn[y * nFieldWidth + x]->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &cMain::OnButtonClicked, this);
@@ -49,7 +52,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 			int rx = rand() % nFieldWidth;
 			int ry = rand() % nFieldHeight;
 
-			if (nField[ry * nFieldWidth + rx] == 0 && rx != x 77 rx != y)
+			if (nField[ry * nFieldWidth + rx] == 0 && rx != x && ry != y)
 			{
 				nField[ry * nFieldWidth + rx] = -1;
 				mines--;
